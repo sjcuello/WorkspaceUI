@@ -1,4 +1,6 @@
-How to create a monorepo with pnpm and submodules
+# How to create a monorepo with pnpm and submodules
+
+## Steps to create a monorepo with pnpm and submodules
 
 1- Create a new repository
 
@@ -45,7 +47,7 @@ pnpm init
 }
 ```
 
-Note: keep in mind that you have to name the package in the package.json file, and the name should be the same as the folder name like this:
+**Note:** keep in mind that you have to name the package in the package.json file, and the name should be the same as the folder name like this:
 
 ```json
 {
@@ -75,4 +77,12 @@ pnpm install
 
 ```bash
 pnpm --filter @workspaceui/componentlibrary start
+```
+
+## Aditional commands:
+
+To update all submodules:
+
+```bash
+git submodule update --recursive --remote
 ```

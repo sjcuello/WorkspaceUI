@@ -1,5 +1,10 @@
 node_modules
 
+.DS_Store
+
+pnpm-lock.yaml
+
+
 [submodule "packages/MainUI"]
     path = packages/MainUI
     url = https://github.com/sjcuello/MainUI.git
