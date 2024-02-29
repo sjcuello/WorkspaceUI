@@ -81,8 +81,20 @@ pnpm --filter @workspaceui/componentlibrary start
 
 ## Aditional commands:
 
-To update all submodules:
+- To update all submodules:
 
 ```bash
 git submodule update --recursive --remote
+```
+
+- To install any library in a specific package (from the workspace root) run:
+
+```bash
+pnpm --filter @workspaceui/componentlibrary add @mui/utils
+```
+
+or navigate to the package folder and run:
+
+```bash
+pnpm add @mui/utils
 ```
