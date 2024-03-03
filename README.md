@@ -8,10 +8,22 @@
 git init
 ```
 
+1.1 Add typescript to pnpm workspaces
+
+```bash
+pnpm add -D typescript typescript-node -w
+```
+
 2- Add submodules
 
 ```bash
 git submodule add <repository-url> packages/<project-name>
+```
+
+2.1- Add the main module to workspaces
+
+```bash
+pnpm add @workspaceui/mainui -w
 ```
 
 3- Initialize and Update Submodules: Make sure all your submodules are initialized and updated.
