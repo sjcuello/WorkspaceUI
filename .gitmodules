@@ -4,3 +4,6 @@
 [submodule "packages/ComponentLibrary"]
 	path = packages/ComponentLibrary
 	url = https://github.com/sjcuello/ComponentLibrary.git
+[submodule "packages/EtendoHookBinder"]
+	path = packages/EtendoHookBinder
+	url = https://github.com/sjcuello/EtendoHookBinder.git
