@@ -14,3 +14,8 @@ pnpm-lock.yaml
     path = packages/ComponentLibrary
     url = https://github.com/sjcuello/ComponentLibrary.git
     ignore = dirty
+
+[submodule "packages/EtendoHookBinder"]
+    path = packages/EtendoHookBinder
+    url = https://github.com/sjcuello/EtendoHookBinder.git
+    ignore = dirty

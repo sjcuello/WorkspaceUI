@@ -1,5 +1,5 @@
 {
-  "name": "WorkspaceUI",
+  "name": "workspaceui",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,7 +9,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "workspaces": [
-    "packages/*"
-  ]
+  "devDependencies": {
+    "typescript": "^4.9.5",
+    "typescript-node": "^0.1.3"
+  }
 }

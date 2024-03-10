@@ -8,16 +8,22 @@
 git init
 ```
 
-2- Add submodules
+1.1- Install pnpm: Install pnpm globally if you haven't already.
 
 ```bash
-git submodule add <repository-url> packages/<project-name>
+npm install -g pnpm
 ```
 
-3- Initialize and Update Submodules: Make sure all your submodules are initialized and updated.
+2- Init pnpm workspace
 
 ```bash
-git submodule update --init --recursive
+pnpm init
+```
+
+3- Add typescript to pnpm workspaces
+
+```bash
+pnpm add -D typescript ts-node -w
 ```
 
 4- Configure pnpm-workspace.yaml: At the root of your workspace repository, create or update the pnpm-workspace.yaml to include paths to your submodules.
@@ -27,65 +33,92 @@ packages:
   - packages/\*
 ```
 
-5- Install pnpm: Install pnpm globally if you haven't already.
+5- Add submodules to the repository
+In this case, all repositories are builded as a Vite project with React and Typescript.
+Create a repository and then excute the following command:
 
 ```bash
-npm install -g pnpm
+git submodule add <repository-url> packages/<project-name>
 ```
 
-6- Init pnpm workspace
-
-```bash
-pnpm init
-```
-
-7- \*If you want packages within your workspace to depend on each other, you can simply add those dependencies in their respective package.json files using the package name. For example, if package-a depends on package-b, in package-a's package.json, you would add:
-
-```json
-"dependencies": {
-  "package-b": "workspace:\*"
-}
-```
-
-**Note:** keep in mind that you have to name the package in the package.json file, and the name should be the same as the folder name like this:
-
-```json
-{
-  "name": "@workspaceui/componentlibrary",
-  "version": "1.0.0",
-  ...
-}
-```
-
-and if it's a dependency in another package.json file, you should add it like this:
-
-```json
-{
-  "dependencies": {
-    "@workspaceui/componentlibrary": "workspace:*"
+5.1- Each repository have to have the same BASE package.json configuration:
+  
+  ```json
+  {
+    "name": "@workspaceui/nameOfProject", // This is the name of the package in the workspace
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+      "dev": "vite",
+      "build": "vite build",
+      "serve": "vite preview"
+    },
+    "dependencies": {
+      "react": "^17.0.2",
+      "react-dom": "^17.0.2",
+      "@workspaceui/projectdependency1": "workspace:^", // This is only required if you have dependencies between packages (ej. MainUI depends on ComponentLibrary)
+    },
+    "devDependencies": {
+      "@vitejs/plugin-react": "^1.0.0",
+      "vite": "^2.6.4"
+    }
   }
-}
-```
+  ```
 
-8- Once all your packages are set up, go back to the root of your workspace and run:
+6- Once all your packages are set up, go back to the root of your workspace and run:
 
 ```bash
 pnpm install
 ```
 
-9- To run scripts would use:
+## Workflow
+- To run scripts would use:
 
 ```bash
-pnpm --filter @workspaceui/componentlibrary start
+pnpm --filter @workspaceui/mainui start
+```
+
+or navigate to the package folder and run:
+
+```bash 
+pnpm start
+``` 
+
+## Add a new package to the workspace (from scratch)
+
+1- Add the new package to the workspace
+
+```bash 
+npm init vite@latest NameOfProject -- --template react-ts
+```
+2- Change the name of the package in the package.json file to the following format:
+
+```json
+{
+  "name": "@workspaceui/nameOfProject",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  ...
+}
+```
+3- In the root of the workspace, run the following command to add the new package to the main workspace:
+
+```bash
+pnpm install
 ```
 
 ## Aditional commands:
 
-- To update all submodules:
+- To update all submodules 
+In the root of the workspace, run the following command:
 
 ```bash
 git submodule update --recursive --remote
 ```
+_Note:_ This command will update all submodules to the latest commit in the remote repository. The workspace tracks the latest commit in the main repository, so you will have to commit the changes in the workspace after running this command. 
+This is an important step to keep all submodules in sync with the workspace repository.
 
 - To install any library in a specific package (from the workspace root) run:
 
