@@ -6,4 +6,4 @@
 	url = https://github.com/sjcuello/ComponentLibrary.git
 [submodule "packages/EtendoHookBinder"]
 	path = packages/EtendoHookBinder
-	url = https://github.com/sjcuello/EtendoHookBinder.git
+	url = https://github.com/sjcuello/EtendoHookBinder
